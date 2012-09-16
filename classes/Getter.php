@@ -17,31 +17,42 @@
             }
         }
         function getNotes(){
-            $sth = $this->dbh->query("select * from notes");
+            $sth = $this->dbh->query("select *, notes.id as noteId from notes left join users on notes.userId = users.id");
             $sth->setFetchMode(PDO::FETCH_CLASS, 'Note');
-            $rows = array();
             while ($row = $sth->fetch()){
                 $rows[] = $row;
             }
             return $rows;
         }
         function getNoteById($args = null){
-            $sth = $this->dbh->query("select * from notes where
-                id = {$args['noteId']}
-            ");
-            $sth->setFetchMode(PDO::FETCH_CLASS, 'Note');
+            try {
+                $sth = $this->dbh->query("
+                    select *, notes.id as noteId from notes
+                    left join users on notes.userId = users.id
+                    where notes.id = {$args['noteId']}
+                ");
+                $sth->setFetchMode(PDO::FETCH_CLASS, 'Note');
+            } catch (PDOException $e) {
+                echo 1;
+                die($e->getMessage());
+            }
             return $sth->fetch();
         }
         function getComments($args = null){
-            $sth = $this->dbh->query("select * from comments where
-                noteId = '{$args['noteId']}'
+            $sth = $this->dbh->query("select *, comments.id as commentId from comments
+                left join users on comments.userId = users.id
+                where noteId = {$args['noteId']}
             ");
-            $sth->setFetchMode(PDO::FETCH_CLASS, 'Comment');
-            $rows = array();
-            while ($row = $sth->fetch()){
-                $rows[] = $row;
+            if ($sth){
+                $sth->setFetchMode(PDO::FETCH_CLASS, 'Comment');
+                $rows = array();
+                while ($row = $sth->fetch()){
+                    $rows[] = $row;
+                }
+                return $rows;
+            } else {
+                return null;
             }
-            return $rows;
         }
         function getUserById($args = null){
             $sth = $this->dbh->query("select * from users where
@@ -49,7 +60,6 @@
             ");
             $sth->setFetchMode(PDO::FETCH_CLASS, 'User');
             $row = $sth->fetch();
-            $row->password = null;
             return $row;
         }
     }

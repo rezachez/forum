@@ -1,16 +1,12 @@
 <? include('header.php'); ?>
 <? if (isset($this->vars['foreignProfile'])): ?>
     <table class="table table-striped table-bordered table-hover">
-        <colgroup>
-            <col class="span2">
-            <col class="span5">
-        </colgroup>
         <tbody>
             <tr>
-                <td>
+                <td class="span2">
                     Id
                 </td>
-                <td>
+                <td class="span5">
                     <?= $this->vars['foreignProfile']->id ?>
                 </td>
             </tr>
@@ -43,7 +39,7 @@
                     Avatar
                 </td>
                 <td>
-                    <?= $this->vars['foreignProfile']->avatar ?>
+                    <img src="<?= $this->vars['foreignProfile']->avatar ?>">
                 </td>
             </tr>
         </tbody>

@@ -27,16 +27,17 @@
                     include('./templates/profile.php');
                     break;
                 case 'note':
+                    $this->vars['currentUser'] = $this->getter->getCurrentUser();
                     $this->vars['note'] = $this->getter->getNoteById(array(
                         'noteId' => $this->vars['noteId']
                     ));
                     $this->vars['comments'] = $this->getter->getComments(array(
                         'noteId' => $this->vars['noteId']
                     ));
-                    include('./template/note.php');
+                    include('./templates/note.php');
                     break;
                 case 'foreignProfile':
-                    $this->vars['user'] = $this->getter->getUserById(array(
+                    $this->vars['foreignProfile'] = $this->getter->getUserById(array(
                         'userId' => $this->vars['userId']
                     ));
                     include('./templates/foreignProfile.php');

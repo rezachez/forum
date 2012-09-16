@@ -4,6 +4,7 @@
             $id,
             $userId,
             $content,
-            $dateCreation;
+            $dateCreation,
+            $commentCount;
     }
 ?>

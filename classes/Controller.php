@@ -34,9 +34,9 @@
                         null,
                         '{$_POST['email']}',
                         '{$_POST['password']}',
-                        null,
+                        'Anonymous',
                         now(),
-                        null
+                        './files/images/avatars/anonymous.png'
                     )");
                     $sth->execute();
                     $sth = $this->dbh->query("select * from users where
@@ -86,7 +86,8 @@
                     null,
                     {$user->id},
                     '{$_POST['content']}',
-                    now()
+                    now(),
+                    0
                 )");
                 $sth->execute();
                 $vars['noteId'] = $this->dbh->lastInsertId();
@@ -108,7 +109,13 @@
                     now()
                 )");
                 $sth->execute();
-                header("location: index.php?page=note");
+                $sth = $this->dbh->prepare("
+                    update notes
+                    set commentCount = commentCount + 1
+                    where id = {$_POST['noteId']}
+                ");
+                $sth->execute();
+                header("location: index.php?page=note&noteId={$_POST['noteId']}");
             } else {
                 $vars['alert'] = View::AuU;
                 header("location: index.php?page=profile&alert={$vars['alert']}");
@@ -116,6 +123,29 @@
         }
         function logOut(){
             unset($_SESSION['user']);
+            header("location: index.php?page=profile");
+        }
+        function updateProfile(){
+            $vars['getter'] = new Getter();
+            $vars['user'] = $vars['getter']->getCurrentUser();
+            $vars['ext'] = pathinfo($_FILES['avatar']['name']);
+            $vars['path'] = "./files/images/avatars/{$vars['user']->id}.{$vars['ext']['extension']}";
+            move_uploaded_file($_FILES['avatar']['tmp_name'], $vars['path']);
+            $vars['userId'] = $_POST['userId'];
+            $vars['email'] = $_POST['email'];
+            $vars['password'] = $_POST['password'];
+            $vars['name'] = $_POST['name'];
+            $vars['sth'] = $this->dbh->prepare("
+                update users set
+                    email = '{$vars['email']}',
+                    password = '{$vars['password']}',
+                    name = '{$vars['name']}',
+                    avatar = '{$vars['path']}'
+                where id = {$vars['userId']}
+            ");
+            $vars['sth']->execute();
+            $vars['user'] = $vars['getter']->getUserById(array('userId' => $vars['userId']));
+            $_SESSION['user'] = $vars['user'];
             header("location: index.php?page=profile");
         }
     }
