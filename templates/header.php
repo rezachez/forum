@@ -13,8 +13,8 @@
     </head>
     <body>
         <div class="span10 offset4">
-            <h1>Forum</h1>
-            <p class="lead">Talk about develop forum on php.</p>
+            <h1>Forum 228</h1>
+            <p class="lead">14/88</p>
             <div class="row">
                 <div class="span2">
                     <ul class="nav nav-pills nav-stacked">

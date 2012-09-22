@@ -1,5 +1,4 @@
-<? include('header.php'); ?>
-<? if (isset($this->vars['foreignProfile'])): ?>
+<? if ($foreignProfile): ?>
     <table class="table table-striped table-bordered table-hover">
         <tbody>
             <tr>
@@ -7,7 +6,7 @@
                     Id
                 </td>
                 <td class="span5">
-                    <?= $this->vars['foreignProfile']->id ?>
+                    <?= $foreignProfile->id ?>
                 </td>
             </tr>
             <tr>
@@ -15,7 +14,7 @@
                     E-mail
                 </td>
                 <td>
-                    <?= $this->vars['foreignProfile']->email ?>
+                    <?= $foreignProfile->email ?>
                 </td>
             </tr>
             <tr>
@@ -23,7 +22,7 @@
                     Name
                 </td>
                 <td>
-                    <?= $this->vars['foreignProfile']->name ?>
+                    <?= $foreignProfile->name ?>
                 </td>
             </tr>
             <tr>
@@ -31,7 +30,23 @@
                     Date registration
                 </td>
                 <td>
-                    <?= $this->vars['foreignProfile']->dateRegistration ?>
+                    <?= $foreignProfile->dateRegistration ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Notes count
+                </td>
+                <td>
+                    <?= $foreignProfile->notesCount ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Comments count
+                </td>
+                <td>
+                    <?= $foreignProfile->commentsCount ?>
                 </td>
             </tr>
             <tr>
@@ -39,10 +54,9 @@
                     Avatar
                 </td>
                 <td>
-                    <img src="<?= $this->vars['foreignProfile']->avatar ?>">
+                    <img src="<?= $foreignProfile->avatar ?>" class="avatar">
                 </td>
             </tr>
         </tbody>
     </table>
 <? endif; ?>
-<? include('footer.php'); ?>

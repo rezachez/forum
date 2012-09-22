@@ -1,5 +1,4 @@
-<? include('templates/header.php'); ?>
-<? if (isset($this->vars['currentUser'])): ?>
+<? if ($user): ?>
     <form action="./index.php" method="post" class="form-orizontal well">
         <button name="action" value="logOut" class="btn btn-primary">
             Log out
@@ -12,7 +11,7 @@
                     Id
                 </td>
                 <td class="span5">
-                    <?= $this->vars['currentUser']->id ?>
+                    <?= $user->id ?>
                 </td>
             </tr>
             <tr>
@@ -20,7 +19,7 @@
                     E-mail
                 </td>
                 <td>
-                    <?= $this->vars['currentUser']->email ?>
+                    <?= $user->email ?>
                 </td>
             </tr>
             <tr>
@@ -28,7 +27,7 @@
                     Password
                 </td>
                 <td>
-                    <?= $this->vars['currentUser']->password ?>
+                    <?= $user->password ?>
                 </td>
             </tr>
             <tr>
@@ -36,7 +35,7 @@
                     Name
                 </td>
                 <td>
-                    <?= $this->vars['currentUser']->name ?>
+                    <?= $user->name ?>
                 </td>
             </tr>
             <tr>
@@ -44,7 +43,23 @@
                     Date registration
                 </td>
                 <td>
-                    <?= $this->vars['currentUser']->dateRegistration ?>
+                    <?= $user->dateRegistration ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Notes count
+                </td>
+                <td>
+                    <?= $user->notesCount ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Comments count
+                </td>
+                <td>
+                    <?= $user->commentsCount ?>
                 </td>
             </tr>
             <tr>
@@ -52,35 +67,29 @@
                     Avatar
                 </td>
                 <td>
-                    <img src="<?= $this->vars['currentUser']->avatar ?>">
+                    <img src="<?= $user->avatar ?>" class="avatar">
                 </td>
             </tr>
         </tbody>
     </table>
     <form action="./index.php" method="post" enctype="multipart/form-data" class="form-horizontal well">
         <fieldset>
-            <input type="hidden" name="userId" value="<?= $this->vars['currentUser']->id ?>">
             <div class="control-group">
                 <label for="emailProfile" class="control-label">E-mail</label>
                 <div class="controls">
-                    <input type="text" name="email" value="<?= $this->vars['currentUser']->email ?>" id="emailProfile">
+                    <input type="text" name="email" id="emailProfile">
                 </div>
             </div>
             <div class="control-group">
                 <label for="passwordProfile" class="control-label">Password</label>
                 <div class="controls">
-                    <input
-                        type="text"
-                        name="password"
-                        value="<?= $this->vars['currentUser']->password ?>"
-                        id="passwordProfile"
-                    >
+                    <input type="text" name="password" id="passwordProfile">
                 </div>
             </div>
             <div class="control-group">
                 <label for="name" class="control-label">Name</label>
                 <div class="controls">
-                    <input type="text" name="name" value="<?= $this->vars['currentUser']->name ?>" id="name">
+                    <input type="text" name="name" id="name">
                 </div>
             </div>
             <div class="control-group">
@@ -130,4 +139,3 @@
         </fieldset>
     </form>
 <? endif ?>
-<? include('templates/footer.php'); ?>

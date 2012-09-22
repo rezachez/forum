@@ -1,46 +1,44 @@
 <?php
     class View {
-        const
-            EmE = 'E-mail empty.',
-            EmP = 'Password empty.',
-            DbE = 'Database error.',
-            ExU = 'User exists.',
-            AuU = 'User no auth.';
         public
-            $vars = array(),
-            $getter;
-        function __construct(){
-            $this->getter = new Getter();
-        }
+            $vars = array();
         function render(){
             switch ($this->vars['page']){
                 case 'start':
-                    include('./templates/start.php');
+                    include('./templates/header.php');
+                    include('./templates/footer.php');
                     break;
                 case 'notes':
-                    $this->vars['currentUser'] = $this->getter->getCurrentUser();
-                    $this->vars['notes'] = $this->getter->getNotes();
+                    $getter = new Getter();
+                    $user = $getter->getCurrentUser();
+                    $notes = $getter->getNotes();
+                    include('./templates/header.php');
                     include('./templates/notes.php');
+                    include('./templates/footer.php');
                     break;
                 case 'profile':
-                    $this->vars['currentUser'] = $this->getter->getCurrentUser();
+                    $getter = new Getter();
+                    $user = $getter->getCurrentUser();
+                    include('./templates/header.php');
                     include('./templates/profile.php');
+                    include('./templates/footer.php');
                     break;
                 case 'note':
-                    $this->vars['currentUser'] = $this->getter->getCurrentUser();
-                    $this->vars['note'] = $this->getter->getNoteById(array(
-                        'noteId' => $this->vars['noteId']
-                    ));
-                    $this->vars['comments'] = $this->getter->getComments(array(
-                        'noteId' => $this->vars['noteId']
-                    ));
+                    $getter = new Getter();
+                    $user = $getter->getCurrentUser();
+                    $note = $getter->getNoteById(array('noteId' => $this->vars['noteId']));
+                    $comments = $getter->getComments(array('noteId' => $this->vars['noteId']));
+                    include('./templates/header.php');
                     include('./templates/note.php');
+                    include('./templates/footer.php');
                     break;
                 case 'foreignProfile':
-                    $this->vars['foreignProfile'] = $this->getter->getUserById(array(
-                        'userId' => $this->vars['userId']
-                    ));
+                    $getter = new Getter();
+                    $user = $getter->getCurrentUser();
+                    $foreignProfile = $getter->getUserById(array('userId' => $this->vars['userId']));
+                    include('./templates/header.php');
                     include('./templates/foreignProfile.php');
+                    include('./templates/footer.php');
                     break;
             }
         }
