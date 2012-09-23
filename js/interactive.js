@@ -1,6 +1,6 @@
 jQuery(function(){
-    $('#redactor_content').redactor();
     $('.comments').tooltip({
         placement: 'bottom'
     });
+    $('#redactor_content').redactor();
 });

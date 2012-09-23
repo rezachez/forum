@@ -16,7 +16,7 @@
         }
         function validStr($args = null){
             foreach ($args as $i => $v){
-                $this->$i = mysql_real_escape_string($v);
+                $this->$i = $v;
             }
         }
     }

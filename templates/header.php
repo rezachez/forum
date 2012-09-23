@@ -24,6 +24,9 @@
                         <li <? if ($this->vars['page'] == 'notes'): ?> class="active" <?endif?> >
                             <a href="index.php?page=notes">Forum</a>
                         </li>
+                        <li>
+                            <a href="index.php?page=vision">Vision</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="span7">

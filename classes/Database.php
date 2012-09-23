@@ -9,7 +9,7 @@
             );
             $connect2 = array(
                 'host' => 'mysql.hostinger.ru',
-                'login' => 'u230301915_root',
+                'login' => 'u545076651_root',
                 'password' => '123456',
                 'name' => 'u545076651_sticka'
             );
@@ -25,6 +25,7 @@
                 //$dbh->query("set character_set_client = 'utf-8'");
                 //$dbh->query("set character_set_results = 'utf-8'");
             } catch(PDOException $e) {
+                echo $e->getMessage();
                 file_put_contents('./errors.txt', date('jS F Y H:i:s') . ' # '. $e->getMessage() . PHP_EOL, FILE_APPEND);
             }
             return $dbh;

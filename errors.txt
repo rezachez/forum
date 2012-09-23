@@ -1,1 +1,4 @@
 22nd September 2012 22:43:56 # E-mail or password errors.
+22nd September 2012 23:24:38 # SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: Этот хост неизвестен. 
+22nd September 2012 23:25:10 # SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: Этот хост неизвестен. 
+22nd September 2012 23:25:16 # SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: Этот хост неизвестен. 

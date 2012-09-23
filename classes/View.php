@@ -40,6 +40,9 @@
                     include('./templates/foreignProfile.php');
                     include('./templates/footer.php');
                     break;
+                case 'vision':
+                    include('./templates/vision.php');
+                    break;
             }
         }
     }

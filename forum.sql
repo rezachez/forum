@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 17, 2012 at 06:27 PM
+-- Generation Time: Sep 22, 2012 at 11:07 PM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `content` tinytext COLLATE utf8_unicode_ci NOT NULL,
   `dateCreation` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=38 ;
 
 --
 -- Dumping data for table `comments`
@@ -66,7 +66,16 @@ INSERT INTO `comments` (`id`, `userId`, `noteId`, `content`, `dateCreation`) VAL
 (25, 4, 13, 'qwer', '2012-09-16 23:51:13'),
 (26, 4, 13, 'Ð¹Ñ†ÑƒÐº', '2012-09-16 23:51:17'),
 (27, 1, 12, 'ÐŸÑ€Ð¸Ð²ÐµÑ‚. Ð•Ð±Ð°Ð½ÑŒÐºÐ¾. Ð§Ñ‚Ð¾ Ð·Ð° Ð°Ð´, Ñ‚ÑƒÑ‚?', '2012-09-17 01:02:35'),
-(28, 1, 14, 'Ð¹Ðº Ñ†ÑƒÐº Ð¹Ñ†ÑƒÐº ', '2012-09-17 01:40:20');
+(28, 1, 14, 'Ð¹Ðº Ñ†ÑƒÐº Ð¹Ñ†ÑƒÐº ', '2012-09-17 01:40:20'),
+(29, 1, 15, 'CHECK', '2012-09-22 21:39:27'),
+(30, 1, 15, 'CHECK', '2012-09-22 21:41:34'),
+(31, 1, 15, 'FIEL', '2012-09-22 21:42:07'),
+(32, 1, 17, 'qweqwr', '2012-09-22 21:43:34'),
+(33, 1, 17, 'qwe', '2012-09-22 22:12:26'),
+(34, 1, 8, 'qwer', '2012-09-22 23:13:04'),
+(35, 1, 8, 'rr', '2012-09-22 23:13:08'),
+(36, 1, 19, 'hi', '2012-09-22 23:13:32'),
+(37, 1, 20, 'wqert', '2012-09-22 23:49:57');
 
 -- --------------------------------------------------------
 
@@ -79,15 +88,15 @@ CREATE TABLE IF NOT EXISTS `notes` (
   `userId` int(11) DEFAULT NULL,
   `content` longtext COLLATE utf8_unicode_ci NOT NULL,
   `dateCreation` datetime NOT NULL,
-  `commentCount` int(11) NOT NULL,
+  `commentsCount` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `notes`
 --
 
-INSERT INTO `notes` (`id`, `userId`, `content`, `dateCreation`, `commentCount`) VALUES
+INSERT INTO `notes` (`id`, `userId`, `content`, `dateCreation`, `commentsCount`) VALUES
 (1, 1, '<p>hi</p>', '2012-09-05 19:19:46', 3),
 (2, 1, '<p>hi</p>', '2012-09-05 19:21:37', 0),
 (3, 1, '<p>buy</p>', '2012-09-05 19:21:45', 0),
@@ -95,13 +104,19 @@ INSERT INTO `notes` (`id`, `userId`, `content`, `dateCreation`, `commentCount`) 
 (5, 1, '<p>Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ° Ñ€ÑƒÑÑÐºÐ¸Ñ…</p>', '2012-09-05 19:52:07', 1),
 (6, 3, '<p>Hello</p>', '2012-09-15 12:28:48', 2),
 (7, 2, '<p>ÐŸÑ€Ð²Ð¸ÐµÑ‚</p>', '2012-09-16 16:13:09', 1),
-(8, 1, '<p>ÐŸÑ€Ð¸Ð²ÐµÑ‚ ÐŸÐ Ð¾Ð²ÐµÑ€ÐºÐ°</p>', '2012-09-16 23:05:33', 0),
+(8, 1, '<p>ÐŸÑ€Ð¸Ð²ÐµÑ‚ ÐŸÐ Ð¾Ð²ÐµÑ€ÐºÐ°</p>', '2012-09-16 23:05:33', 2),
 (9, 4, '<p>CHECK</p>', '2012-09-16 23:18:00', 0),
 (10, 4, '<p>CHECK@!</p>', '2012-09-16 23:21:53', 1),
 (11, 4, '<p>fff</p>', '2012-09-16 23:30:11', 2),
 (12, 4, '<p>ee</p>', '2012-09-16 23:36:07', 1),
 (13, 4, '<p>Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ° Ñ€ÑƒÑÑÐºÐ¸Ñ…</p>', '2012-09-16 23:40:40', 6),
-(14, 1, '<p><div style="text-align: center;"><span style="line-height: 20px;">Ð²Ñ„Ñ‹Ð²Ñ„Ñ‹Ð²Ð° Ñ‹Ð²Ñ„Ð°Ñ„</span></div><div style="text-align: center;"><span style="line-height: 20px;">Ñ‹Ð²Ð°Ñ„Ñ‹Ð²Ð°Ñ„Ñ‹Ð²Ð°</span></div><div style="text-align: left;"><span style="line-height: 20px;">Ð°Ñ„Ñ‹Ð²Ð°Ñ„Ñ‹Ð²Ð° Ñ„Ñ‹Ð²Ð° Ñ„Ñ‹Ð²Ð° Ñ‹Ñ„Ð² Ð°Ñ„Ñ‹Ð² Ð°Ñ„Ñ‹Ð² Ð° Ñ„Ñ‹Ð²Ð° Ñ‹Ñ„Ð² &nbsp;Ñ‹Ñ„Ð²Ð° Ñ„Ñ‹Ð²Ð° Ñ„Ñ‹Ð² Ð°Ñ„Ñ‹Ð² Ð°Ñ„ Ñ‹Ð²Ð° Ñ„Ñ‹Ð²Ð° Ñ„Ñ‹Ð² Ð° Ñ„Ñ‹Ð²Ð° &nbsp;Ñ‹Ñ„Ð²Ð° Ñ‹Ð²Ñ„ Ñ‹Ð² Ñ„Ñ‹Ð²Ð° Ñ‹Ð² Ð° Ñ„Ñ‹Ð²Ð° Ñ„Ñ‹Ð² Ð°Ñ„Ñ‹Ð² Ð° Ñ‹Ð²Ð° Ñ‹Ð²&nbsp;</span></div><hr>&nbsp;Ñ„Ñ‹Ð²Ð° Ñ‹Ñ„Ð²Ð° Ñ„Ñ‹Ð²Ð°&nbsp;<div style="text-align: left;"><span style="line-height: 20px;">Ð°</span></div></p>', '2012-09-17 01:39:37', 1);
+(14, 1, '<p><div style="text-align: center;"><span style="line-height: 20px;">Ð²Ñ„Ñ‹Ð²Ñ„Ñ‹Ð²Ð° Ñ‹Ð²Ñ„Ð°Ñ„</span></div><div style="text-align: center;"><span style="line-height: 20px;">Ñ‹Ð²Ð°Ñ„Ñ‹Ð²Ð°Ñ„Ñ‹Ð²Ð°</span></div><div style="text-align: left;"><span style="line-height: 20px;">Ð°Ñ„Ñ‹Ð²Ð°Ñ„Ñ‹Ð²Ð° Ñ„Ñ‹Ð²Ð° Ñ„Ñ‹Ð²Ð° Ñ‹Ñ„Ð² Ð°Ñ„Ñ‹Ð² Ð°Ñ„Ñ‹Ð² Ð° Ñ„Ñ‹Ð²Ð° Ñ‹Ñ„Ð² &nbsp;Ñ‹Ñ„Ð²Ð° Ñ„Ñ‹Ð²Ð° Ñ„Ñ‹Ð² Ð°Ñ„Ñ‹Ð² Ð°Ñ„ Ñ‹Ð²Ð° Ñ„Ñ‹Ð²Ð° Ñ„Ñ‹Ð² Ð° Ñ„Ñ‹Ð²Ð° &nbsp;Ñ‹Ñ„Ð²Ð° Ñ‹Ð²Ñ„ Ñ‹Ð² Ñ„Ñ‹Ð²Ð° Ñ‹Ð² Ð° Ñ„Ñ‹Ð²Ð° Ñ„Ñ‹Ð² Ð°Ñ„Ñ‹Ð² Ð° Ñ‹Ð²Ð° Ñ‹Ð²&nbsp;</span></div><hr>&nbsp;Ñ„Ñ‹Ð²Ð° Ñ‹Ñ„Ð²Ð° Ñ„Ñ‹Ð²Ð°&nbsp;<div style="text-align: left;"><span style="line-height: 20px;">Ð°</span></div></p>', '2012-09-17 01:39:37', 1),
+(15, 1, '<p>HELLO</p>', '2012-09-22 21:31:37', 3),
+(16, 1, '<p>buy</p>', '2012-09-22 21:42:16', 0),
+(17, 1, '<p>qwer11</p>', '2012-09-22 21:43:27', 2),
+(18, 1, '<p>asdfgg</p>', '2012-09-22 22:49:56', 0),
+(19, 1, '<p>checvqwer</p>', '2012-09-22 23:13:29', 1),
+(20, 1, '<p>wwww</p>', '2012-09-22 23:49:51', 1);
 
 -- --------------------------------------------------------
 
@@ -113,23 +128,26 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `dateRegistration` datetime NOT NULL,
-  `avatar` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `avatar` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `notesCount` int(11) NOT NULL,
   `commentsCount` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `name`, `dateRegistration`, `avatar`, `notesCount`, `commentsCount`) VALUES
-(1, 'qwer', '1234', 'Pavel Lysenko', '2012-09-07 21:28:35', './files/images/avatars/1.jpg', 2, 2),
-(2, 'qwer1', '1234', 'Anonymous', '2012-09-14 20:18:01', './files/images/avatars/2.jpg', 3, 0),
-(3, 'qwer2', '1234', 'Anonymous', '2012-09-15 12:28:36', './files/images/avatars/anonymous.png', 4, 0),
-(4, 'qwer4', '1234', 'Anonymous', '2012-09-16 23:17:44', './files/images/avatars/anonymous.png', 5, 9);
+(1, 'qwer1', '1234', 'Pavel Lysenko', '2012-09-07 21:28:35', './files/images/avatars/1.jpg', 8, 10),
+(2, 'qwer2', '1234', 'Anonymous', '2012-09-14 20:18:01', './files/images/avatars/2.jpg', 3, 0),
+(3, 'qwer3', '1234', 'Anonymous', '2012-09-15 12:28:36', './files/images/avatars/anonymous.png', 4, 0),
+(4, 'qwer4', '1234', 'Anonymous', '2012-09-16 23:17:44', './files/images/avatars/anonymous.png', 5, 9),
+(8, 'qwer5', '1234', 'Anonymous', '2012-09-22 10:10:32', './files/images/avatars/anonymous.png', 0, 0),
+(12, 'qwer6', '1234', 'Anonymous', '2012-09-22 10:12:03', './files/images/avatars/anonymous.png', 0, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
