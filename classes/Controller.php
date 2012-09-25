@@ -165,6 +165,16 @@
                         $avatarInfo = pathinfo($_FILES['avatar']['name']);
                         $avatarPath = "./files/images/avatars/{$user->id}.{$avatarInfo['extension']}";
                         move_uploaded_file($_FILES['avatar']['tmp_name'], $avatarPath);
+                        try {
+                            $this->dbh->query("
+                                update users
+                                set avatar = '{$avatarPath}'
+                                where id = $user->id
+                            ");
+                        } catch(PDOException $e){
+                            echo $e->getMessage();
+                            file_put_contents('./errors.txt', date('jS F Y H:i:s') . ' # '. $e->getMessage() . PHP_EOL, FILE_APPEND);
+                        }
                     } else {
                         try {
                             $this->dbh->query("

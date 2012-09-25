@@ -2,3 +2,18 @@
 22nd September 2012 23:24:38 # SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: Этот хост неизвестен. 
 22nd September 2012 23:25:10 # SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: Этот хост неизвестен. 
 22nd September 2012 23:25:16 # SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: Этот хост неизвестен. 
+23rd September 2012 20:52:04 # SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: Этот хост неизвестен. 
+23rd September 2012 20:52:17 # SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: Этот хост неизвестен. 
+23rd September 2012 20:52:19 # SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: Этот хост неизвестен. 
+23rd September 2012 20:52:20 # SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: Этот хост неизвестен. 
+23rd September 2012 20:52:25 # SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: Этот хост неизвестен. 
+23rd September 2012 21:04:47 # SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: Этот хост неизвестен. 
+23rd September 2012 21:07:33 # E-mail or password errors.
+23rd September 2012 21:07:48 # SQLSTATE[42S22]: Column not found: 1054 Unknown column 'errors' in 'field list'
+23rd September 2012 21:07:48 # SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1 = 'password'
+                                where id = 4' at line 2
+23rd September 2012 21:07:48 # SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '2 = 'name'
+                                where id = 4' at line 2
+24th September 2012 22:09:45 # SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: Запрошенное имя верно, но данные запрошенного типа не найдены. 
+25th September 2012 08:40:04 # SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: Этот хост неизвестен. 
+25th September 2012 08:40:04 # SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: Этот хост неизвестен. 

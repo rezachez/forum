@@ -8,7 +8,7 @@
     }
     if (empty($_GET['page']) && empty($_POST['action'])){
         $view = new View();
-        $view->vars['page'] = 'start';
+        $view->vars['page'] = 'notes';
         $view->render();
     }
     if (isset($_GET['page'])){

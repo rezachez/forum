@@ -43,7 +43,7 @@
         }
         return {
             init: function(){
-                setInterval(render, 1000);
+                setInterval(render, 3000);
             }
         }
     }

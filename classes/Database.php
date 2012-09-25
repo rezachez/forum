@@ -13,7 +13,7 @@
                 'password' => '123456',
                 'name' => 'u545076651_sticka'
             );
-            $c = $connect1;
+            $c = $connect2;
             try {
                 $dbh = new PDO(
                     "mysql:host={$c['host']};dbname={$c['name']}",

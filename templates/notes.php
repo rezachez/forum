@@ -21,8 +21,15 @@
             $datetime = date("jS F Y H:i:s", $datetimeStr);
     ?>
         <div class="well">
-            <a href="index.php?page=note&noteId=<?= $v->noteId ?>"><?= $datetime ?></a>
-            <div rel="tooltip" title="Count comments" class="pull-right comments"><?= $v->noteCommentsCount ?></div>
+            <?= $datetime ?>
+            <a
+                href="index.php?page=note&noteId=<?= $v->noteId ?>"
+                rel="tooltip"
+                title="Comments"
+                class="pull-right comments"
+            >
+                <?= $v->noteCommentsCount ?>
+            </a>
             <p>
                 <?= $v->content ?>
             </p>

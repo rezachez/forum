@@ -4,10 +4,6 @@
             $vars = array();
         function render(){
             switch ($this->vars['page']){
-                case 'start':
-                    include('./templates/header.php');
-                    include('./templates/footer.php');
-                    break;
                 case 'notes':
                     $getter = new Getter();
                     $user = $getter->getCurrentUser();
