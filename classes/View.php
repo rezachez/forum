@@ -4,12 +4,20 @@
             $vars = array();
         function render(){
             switch ($this->vars['page']){
-                case 'notes':
+                case 'messages':
                     $getter = new Getter();
                     $user = $getter->getCurrentUser();
-                    $notes = $getter->getNotes();
+                    $messages = $getter->getMessages();
                     include('./templates/header.php');
-                    include('./templates/notes.php');
+                    include('./templates/messages.php');
+                    include('./templates/footer.php');
+                    break;
+                case 'message':
+                    $getter = new Getter();
+                    $user = $getter->getCurrentUser();
+                    $message = $getter->getMessageById(array('messageId' => $this->vars['messageId']));
+                    include('./templates/header.php');
+                    include('./templates/message.php');
                     include('./templates/footer.php');
                     break;
                 case 'profile':
@@ -17,15 +25,6 @@
                     $user = $getter->getCurrentUser();
                     include('./templates/header.php');
                     include('./templates/profile.php');
-                    include('./templates/footer.php');
-                    break;
-                case 'note':
-                    $getter = new Getter();
-                    $user = $getter->getCurrentUser();
-                    $note = $getter->getNoteById(array('noteId' => $this->vars['noteId']));
-                    $comments = $getter->getComments(array('noteId' => $this->vars['noteId']));
-                    include('./templates/header.php');
-                    include('./templates/note.php');
                     include('./templates/footer.php');
                     break;
                 case 'foreignProfile':

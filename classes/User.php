@@ -5,16 +5,14 @@
             $email,
             $password,
             $name,
-            $dateRegistration,
+            $regDate,
             $avatar,
-            $notesCount,
-            $commentsCount;
+            $messageCount;
         function __construct($args = null){
             parent::__construct($args);
             $this->validInt(array(
                 'id',
-                'notesCount',
-                'commentsCount'
+                'messageCount'
             ));
             $this->validStr(array(
                 'email',

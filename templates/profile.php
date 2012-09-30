@@ -4,7 +4,7 @@
             Log out
         </button>
     </form>
-    <table class="table table-striped table-bordered table-hover">
+    <table class="table table-striped table-bordered">
         <tbody>
             <tr>
                 <td class="span2">
@@ -40,26 +40,22 @@
             </tr>
             <tr>
                 <td>
-                    Date registration
+                    Registration date
                 </td>
                 <td>
-                    <?= $user->dateRegistration ?>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Notes count
-                </td>
-                <td>
-                    <?= $user->notesCount ?>
+                    <?
+                        $datetimeStr = strtotime($user->regDate);
+                        $regDate = date('jS F Y H:i:s', $datetimeStr);
+                    ?>
+                    <?= $regDate ?>
                 </td>
             </tr>
             <tr>
                 <td>
-                    Comments count
+                    Message count
                 </td>
                 <td>
-                    <?= $user->commentsCount ?>
+                    <?= $user->messageCount ?>
                 </td>
             </tr>
             <tr>

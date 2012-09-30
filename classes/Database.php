@@ -13,7 +13,14 @@
                 'password' => '123456',
                 'name' => 'u545076651_sticka'
             );
-            $c = $connect2;
+            switch ($_SERVER['SERVER_ADDR']){
+                case '31.170.164.119':
+                    $c = $connect2;
+                    break;
+                default:
+                    $c = $connect1;
+                    break;
+            }
             try {
                 $dbh = new PDO(
                     "mysql:host={$c['host']};dbname={$c['name']}",
@@ -21,9 +28,6 @@
                     $c['password']
                 );
                 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                //$dbh->query("set character_set_connection = 'utf-8'");
-                //$dbh->query("set character_set_client = 'utf-8'");
-                //$dbh->query("set character_set_results = 'utf-8'");
             } catch(PDOException $e) {
                 echo $e->getMessage();
                 file_put_contents('./errors.txt', date('jS F Y H:i:s') . ' # '. $e->getMessage() . PHP_EOL, FILE_APPEND);

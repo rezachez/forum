@@ -25,10 +25,9 @@
                             email = '{$user->email}',
                             password = '{$user->password}',
                             name = 'Anonymous',
-                            dateRegistration = now(),
+                            regDate = now(),
                             avatar = './files/images/avatars/anonymous.png',
-                            notesCount = 0,
-                            commentsCount = 0
+                            messageCount = 0
                     ");
                     $sth = $this->dbh->query("
                         select * from users
@@ -73,73 +72,33 @@
                 }
             }
         }
-        function publishNote(){
+        function publishMessage(){
             $user = $_SESSION['user'];
-            $note = new Note(array(
+            $message = new Message(array(
                 'userId' => $user->id,
                 'content' => $_POST['content']
             ));
-            if (isset($note->errors)){
-                $alert = implode(',', $note->errors);
-                header("location: index.php?page=notes&alert=$alert");
+            if (isset($message->errors)){
+                $alert = implode(',', $message->errors);
+                header("location: index.php?page=messages&alert=$alert");
             } else {
                 try {
                     $this->dbh->query("
-                        insert into notes
+                        insert into messages
                         set
                             userId = $user->id,
-                            content = '{$note->content}',
-                            dateCreation = now(),
-                            commentsCount = 0
+                            content = '{$message->content}',
+                            createDate = now()
                     ");
-                    $note->id = $this->dbh->lastInsertId();
+                    $message->id = $this->dbh->lastInsertId();
                     $this->dbh->query("
                         update users
-                        set notesCount = notesCount + 1
+                        set messageCount = messageCount + 1
                         where id = {$user->id}
                     ");
                     $getter = new Getter();
                     $_SESSION['user'] = $getter->getUserById(array('userId' => $user->id));
-                    header("location: index.php?page=note&noteId=$note->id");
-                } catch (PDOException $e){
-                    echo $e->getMessage();
-                    file_put_contents('./errors.txt', date('jS F Y H:i:s') . ' # '. $e->getMessage() . PHP_EOL, FILE_APPEND);
-                }
-            }
-        }
-        function publishComment(){
-            $user = $_SESSION['user'];
-            $comment = new Comment(array(
-                'userId' => $user->id,
-                'noteId' => $_POST['noteId'],
-                'content' => $_POST['content']
-            ));
-            if (isset($comment->errors)){
-                $alert = implode(',', $comment->errors);
-                header("location: index.php?page=note&noteId=$comment->noteId&alert=$alert");
-            } else {
-                try {
-                    $this->dbh->query("
-                        insert into comments
-                        set
-                            userId = $comment->userId,
-                            noteId = $comment->noteId,
-                            content = '{$comment->content}',
-                            dateCreation = now()
-                    ");
-                    $this->dbh->query("
-                        update notes
-                        set commentsCount = commentsCount + 1
-                        where id = $comment->noteId
-                    ");
-                    $this->dbh->query("
-                        update users
-                        set commentsCount = commentsCount + 1
-                        where id = {$comment->userId}
-                    ");
-                    $getter = new Getter();
-                    $_SESSION['user'] = $getter->getUserById(array('userId' => $comment->userId));
-                    header("location: index.php?page=note&noteId={$comment->noteId}");
+                    header("location: index.php?page=messages");
                 } catch (PDOException $e){
                     echo $e->getMessage();
                     file_put_contents('./errors.txt', date('jS F Y H:i:s') . ' # '. $e->getMessage() . PHP_EOL, FILE_APPEND);

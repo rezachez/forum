@@ -1,5 +1,5 @@
 <? if ($foreignProfile): ?>
-    <table class="table table-striped table-bordered table-hover">
+    <table class="table table-striped table-bordered">
         <tbody>
             <tr>
                 <td class="span2">
@@ -27,26 +27,22 @@
             </tr>
             <tr>
                 <td>
-                    Date registration
+                    Registration date
                 </td>
                 <td>
-                    <?= $foreignProfile->dateRegistration ?>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Notes count
-                </td>
-                <td>
-                    <?= $foreignProfile->notesCount ?>
+                    <?
+                        $datetimeStr = strtotime($foreignProfile->regDate);
+                        $regDate = date('jS F Y H:i:s', $datetimeStr);
+                    ?>
+                    <?= $regDate ?>
                 </td>
             </tr>
             <tr>
                 <td>
-                    Comments count
+                    Message count
                 </td>
                 <td>
-                    <?= $foreignProfile->commentsCount ?>
+                    <?= $foreignProfile->messageCount ?>
                 </td>
             </tr>
             <tr>

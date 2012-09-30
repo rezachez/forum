@@ -16,18 +16,17 @@
                 return false;
             }
         }
-        function getNotes(){
+        function getMessages(){
             try {
                 $sth = $this->dbh->query("
                     select
                         *,
-                        notes.id as noteId,
-                        notes.commentsCount as noteCommentsCount
-                    from notes
-                    left join users on notes.userId = users.id
-                    order by notes.id desc
+                        messages.id as messageId
+                    from messages
+                    left join users on messages.userId = users.id
+                    order by messages.id desc
                 ");
-                $sth->setFetchMode(PDO::FETCH_CLASS, 'Note');
+                $sth->setFetchMode(PDO::FETCH_CLASS, 'Message');
                 while ($row = $sth->fetch()){
                     $rows[] = $row;
                 }
@@ -41,18 +40,17 @@
                 return false;
             }
         }
-        function getNoteById($args = null){
+        function getMessageById($args = null){
             try {
                 $sth = $this->dbh->query("
                     select
                         *,
-                        notes.id as noteId,
-                        notes.commentsCount as noteCommentsCount
-                    from notes
-                    left join users on notes.userId = users.id
-                    where notes.id = {$args['noteId']}
+                        messages.id as messageId
+                    from messages
+                    left join users on messages.userId = users.id
+                    where messages.id = {$args['messageId']}
                 ");
-                $sth->setFetchMode(PDO::FETCH_CLASS, 'Note');
+                $sth->setFetchMode(PDO::FETCH_CLASS, 'Message');
                 $row = $sth->fetch();
             } catch (PDOException $e){
                 echo $e->getMessage();
@@ -60,30 +58,6 @@
             }
             if (isset($row)){
                 return $row;
-            } else {
-                return false;
-            }
-        }
-        function getComments($args = null){
-            try {
-                $sth = $this->dbh->query("
-                    select
-                        *,
-                        comments.id as commentId
-                    from comments
-                    left join users on comments.userId = users.id
-                    where noteId = {$args['noteId']}
-                ");
-                $sth->setFetchMode(PDO::FETCH_CLASS, 'Comment');
-                while ($row = $sth->fetch()){
-                    $rows[] = $row;
-                }
-            } catch (PDOException $e){
-                echo $e->getMessage();
-                file_put_contents('./errors.txt', date('jS F Y H:i:s') . ' # '. $e->getMessage() . PHP_EOL, FILE_APPEND);
-            }
-            if (isset($rows)){
-                return $rows;
             } else {
                 return false;
             }
